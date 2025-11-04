@@ -27,6 +27,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
 
+  const API_BASE_URL = 'https://try-on-backend-rmp8.onrender.com';
+
   useEffect(() => {
     const user = localStorage.getItem('currentUser');
     if (user) {
@@ -42,7 +44,6 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem('currentUser');
-    // Also clear any user-specific data if needed
     const userKeys = Object.keys(localStorage).filter(key => key.startsWith('aiOutfitResults_'));
     userKeys.forEach(key => localStorage.removeItem(key));
     
@@ -50,7 +51,6 @@ function App() {
     resetAll();
   };
 
-  // Get auth headers for API requests
   const getAuthHeaders = () => {
     const headers = {};
     if (currentUser && currentUser.token) {
@@ -144,7 +144,7 @@ function App() {
       }
 
       try {
-        const healthResponse = await fetch('http://localhost:5000/api/health', {
+        const healthResponse = await fetch(`${API_BASE_URL}/api/health`, {
           headers: {
             ...getAuthHeaders()
           }
@@ -159,11 +159,11 @@ function App() {
         if (healthError.message.includes('Authentication failed')) {
           throw new Error('Authentication failed. Please sign in again.');
         } else {
-          throw new Error('Backend server is not responding. Please make sure the backend is running on http://localhost:5000');
+          throw new Error(`Backend server is not responding. Please make sure the backend is running on ${API_BASE_URL}`);
         }
       }
 
-      const response = await fetch('http://localhost:5000/api/generate', {
+      const response = await fetch(`${API_BASE_URL}/api/generate`, {
         method: 'POST',
         body: formData,
         headers: {
@@ -200,7 +200,7 @@ function App() {
         const maxAttempts = 60;
         
         try {
-          const statusResponse = await fetch(`http://localhost:5000/api/status/${requestId}`, {
+          const statusResponse = await fetch(`${API_BASE_URL}/api/status/${requestId}`, {
             headers: {
               ...getAuthHeaders()
             }
@@ -281,12 +281,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-lightBg flex">
-      {/* Sidebar - Desktop only */}
       <div className="hidden lg:block">
         <Sidebar />
       </div>
 
-      {/* Main content area */}
       <div className="flex-1 flex flex-col">
         <header className="bg-whiteBg border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -363,7 +361,6 @@ function App() {
               </div>
             </div>
 
-            {/* Desktop Layout */}
             <div className="hidden lg:flex">
               <div className="w-[32%] border-r border-gray-200 p-6 flex flex-col justify-between">
                 <LeftPanel
