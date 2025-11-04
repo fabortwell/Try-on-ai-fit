@@ -326,7 +326,7 @@ const AuthPage = ({ onSignIn }) => {
 
           <div className="mt-6 text-center">
             <p className="text-xs text-grayText">
-              &copy; 2024 TryFit AI. The future of fashion is here.
+              &copy; 2025 TryFit AI. The future of fashion is here.
             </p>
           </div>
         </div>
