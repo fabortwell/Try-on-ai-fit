@@ -6,6 +6,8 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
   const [storedResults, setStoredResults] = useState([]);
   const [modalData, setModalData] = useState(null);
 
+  const API_BASE_URL = 'https://try-on-backend-rmp8.onrender.com';
+
   const getStorageKey = useCallback(() => {
     return currentUser ? `aiOutfitResults_${currentUser.username}` : 'aiOutfitResults_anonymous';
   }, [currentUser]);
@@ -92,8 +94,7 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
   const getValidImageUrl = (url) => {
     if (url && typeof url === 'string') {
       if (url.startsWith('/outputs') || url.startsWith('/defaults')) {
-        const serverBaseUrl = 'http://localhost:5000';
-        return `${serverBaseUrl}${url}`;
+        return `${API_BASE_URL}${url}`;
       }
       if (url.startsWith('http')) {
         return url;
@@ -111,7 +112,7 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
     if (!imageUrl) return;
     
     try {
-      const fullUrl = imageUrl.startsWith('http') ? imageUrl : `http://localhost:5000${imageUrl}`;
+      const fullUrl = imageUrl.startsWith('http') ? imageUrl : `${API_BASE_URL}${imageUrl}`;
       const link = document.createElement('a');
       link.href = fullUrl;
       link.download = filename || 'ai-outfit.jpg';

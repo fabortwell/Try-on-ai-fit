@@ -1,7 +1,5 @@
 import React from 'react';
 import { Upload, Image, Info, AlertCircle, CheckCircle, X, Trash2 } from 'lucide-react';
-
-// Import all local images
 import model1 from '../images/model1.png';
 import model2 from '../images/model2.jpeg';
 import model3 from '../images/model3.png';

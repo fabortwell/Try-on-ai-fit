@@ -14,6 +14,8 @@ const AuthPage = ({ onSignIn }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
 
+  const API_BASE_URL = 'https://try-on-backend-rmp8.onrender.com';
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -65,7 +67,7 @@ const AuthPage = ({ onSignIn }) => {
 
     try {
       const endpoint = isSignIn ? 'signin' : 'signup';
-      const response = await fetch(`http://localhost:5000/api/auth/${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,12 +84,11 @@ const AuthPage = ({ onSignIn }) => {
       }
 
       const userData = await response.json();
-      
-      // Store user data with token
+
       const user = {
         id: userData.user.id,
         email: userData.user.email,
-        username: userData.user.email.split('@')[0], // Generate username from email
+        username: userData.user.email.split('@')[0],
         token: userData.token,
         createdAt: userData.user.createdAt
       };
