@@ -1,5 +1,7 @@
 import React from 'react';
 import { Upload, Image, Info, AlertCircle, CheckCircle, X, Trash2 } from 'lucide-react';
+
+// Import all local images
 import model1 from '../images/model1.png';
 import model2 from '../images/model2.jpeg';
 import model3 from '../images/model3.png';
@@ -193,7 +195,6 @@ const LeftPanel = ({
         setBottomGarmentImage(garment.url);
         setSelectedBottomGarmentId(garmentId);
         
- 
         setSingleGarmentImage(null);
         setSelectedGarmentId(null);
       }
@@ -277,45 +278,52 @@ const LeftPanel = ({
   };
 
   return (
-    <div className="flex flex-col justify-between h-full space-y-6">
+    <div className="flex flex-col justify-between h-full space-y-4 sm:space-y-6">
       <div className="hidden lg:block mb-2">
         <h1 className="text-2xl font-semibold text-primary mb-1">TryFit AI </h1>
         <p className="text-sm text-grayText">Upload a model and garments to generate outfits</p>
       </div>
 
+      {/* Mobile Header - Only visible on mobile */}
+      <div className="lg:hidden mb-2">
+        <h1 className="text-xl font-semibold text-primary mb-1">TryFit AI</h1>
+        <p className="text-xs text-grayText">Upload a model and garments to generate outfits</p>
+      </div>
+
       {errors.model && (
-        <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
-          <AlertCircle className="text-red-500" size={18} />
+        <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm sm:text-base">
+          <AlertCircle className="text-red-500 flex-shrink-0" size={18} />
           <span className="text-red-700 text-sm">{errors.model}</span>
         </div>
       )}
 
       {errors.garment && (
-        <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
-          <AlertCircle className="text-red-500" size={18} />
+        <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm sm:text-base">
+          <AlertCircle className="text-red-500 flex-shrink-0" size={18} />
           <span className="text-red-700 text-sm">{errors.garment}</span>
         </div>
       )}
 
       {errors.api && (
-        <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
-          <AlertCircle className="text-red-500" size={18} />
+        <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm sm:text-base">
+          <AlertCircle className="text-red-500 flex-shrink-0" size={18} />
           <span className="text-red-700 text-sm">{errors.api}</span>
         </div>
       )}
 
       {success && (
-        <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg">
-          <CheckCircle className="text-green-500" size={18} />
+        <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg text-sm sm:text-base">
+          <CheckCircle className="text-green-500 flex-shrink-0" size={18} />
           <span className="text-green-700 text-sm">{success}</span>
         </div>
       )}
 
+      {/* Model Selection Section */}
       <div>
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex gap-2 lg:gap-4">
+        <div className="flex justify-between items-center mb-3 sm:mb-4">
+          <div className="flex gap-1 sm:gap-2 lg:gap-4">
             <button
-              className={`text-sm px-3 lg:px-4 py-2 rounded-md transition-colors ${
+              className={`text-xs sm:text-sm px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-md transition-colors ${
                 modelTab === "default"
                   ? "bg-primary text-white shadow-md"
                   : "text-grayText hover:text-primary bg-gray-100 hover:bg-gray-200"
@@ -325,7 +333,7 @@ const LeftPanel = ({
               Default
             </button>
             <button
-              className={`text-sm px-3 lg:px-4 py-2 rounded-md transition-colors ${
+              className={`text-xs sm:text-sm px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-md transition-colors ${
                 modelTab === "upload"
                   ? "bg-primary text-white shadow-md"
                   : "text-grayText hover:text-primary bg-gray-100 hover:bg-gray-200"
@@ -335,15 +343,16 @@ const LeftPanel = ({
               Upload
             </button>
           </div>
-          <div className="flex items-center gap-2 text-grayText hover:text-primary cursor-pointer transition-colors">
-            <Info size={16} />
-            <span className="text-sm font-medium">Guideline</span>
+          <div className="flex items-center gap-1 sm:gap-2 text-grayText hover:text-primary cursor-pointer transition-colors">
+            <Info size={14} className="sm:w-4" />
+            <span className="text-xs sm:text-sm font-medium">Guideline</span>
           </div>
         </div>
+        
         {modelTab === "default" && (
           <div>
-            <div className="flex justify-between items-center mb-3">
-              <p className="text-sm text-grayText">Choose a default model:</p>
+            <div className="flex justify-between items-center mb-2 sm:mb-3">
+              <p className="text-xs sm:text-sm text-grayText">Choose a default model:</p>
               {selectedDefaultModel && (
                 <button
                   onClick={clearDefaultModel}
@@ -355,14 +364,14 @@ const LeftPanel = ({
               )}
             </div>
             
-            <div className="space-y-3">
-              <div className="grid grid-cols-4 gap-2">
+            <div className="space-y-2 sm:space-y-3">
+              <div className="grid grid-cols-4 gap-1 sm:gap-2">
                 {defaultModels.slice(0, 4).map((model) => (
                   <div
                     key={model.id}
-                    className={`relative cursor-pointer rounded-xl overflow-hidden border-2 transition-all duration-300 group ${
+                    className={`relative cursor-pointer rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all duration-300 group ${
                       selectedDefaultModel === model.id 
-                        ? "border-primary ring-2 ring-primary/20 shadow-md" 
+                        ? "border-primary ring-1 sm:ring-2 ring-primary/20 shadow-md" 
                         : "border-gray-200 hover:border-primary hover:shadow-sm"
                     }`}
                     onClick={() => setSelectedDefaultModel(model.id)}
@@ -374,8 +383,8 @@ const LeftPanel = ({
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       {selectedDefaultModel === model.id && (
-                        <div className="absolute top-1 right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center shadow-md">
-                          <CheckCircle size={12} className="text-white" />
+                        <div className="absolute top-1 right-1 w-4 h-4 sm:w-5 sm:h-5 bg-primary rounded-full flex items-center justify-center shadow-md">
+                          <CheckCircle size={10} className="text-white sm:w-3" />
                         </div>
                       )}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -384,13 +393,13 @@ const LeftPanel = ({
                 ))}
               </div>
 
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-4 gap-1 sm:gap-2">
                 {defaultModels.slice(4, 8).map((model) => (
                   <div
                     key={model.id}
-                    className={`relative cursor-pointer rounded-xl overflow-hidden border-2 transition-all duration-300 group ${
+                    className={`relative cursor-pointer rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all duration-300 group ${
                       selectedDefaultModel === model.id 
-                        ? "border-primary ring-2 ring-primary/20 shadow-md" 
+                        ? "border-primary ring-1 sm:ring-2 ring-primary/20 shadow-md" 
                         : "border-gray-200 hover:border-primary hover:shadow-sm"
                     }`}
                     onClick={() => setSelectedDefaultModel(model.id)}
@@ -402,8 +411,8 @@ const LeftPanel = ({
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       {selectedDefaultModel === model.id && (
-                        <div className="absolute top-1 right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center shadow-md">
-                          <CheckCircle size={12} className="text-white" />
+                        <div className="absolute top-1 right-1 w-4 h-4 sm:w-5 sm:h-5 bg-primary rounded-full flex items-center justify-center shadow-md">
+                          <CheckCircle size={10} className="text-white sm:w-3" />
                         </div>
                       )}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -426,28 +435,28 @@ const LeftPanel = ({
             />
             <label
               htmlFor="model-upload"
-              className="relative bg-darkBg border-2 border-dashed border-gray-400 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary transition-all cursor-pointer h-40"
+              className="relative bg-darkBg border-2 border-dashed border-gray-400 rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center hover:border-primary transition-all cursor-pointer h-32 sm:h-40"
             >
               {modelImage ? (
                 <>
                   <button
                     onClick={deleteModelImage}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors z-10 shadow-md"
+                    className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors z-10 shadow-md"
                   >
-                    <X size={14} />
+                    <X size={12} className="sm:w-3.5" />
                   </button>
                   <img
                     src={modelImage}
                     alt="Uploaded model"
-                    className="w-16 h-16 object-cover rounded-lg mb-2 shadow-sm"
+                    className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-lg mb-1 sm:mb-2 shadow-sm"
                   />
-                  <p className="text-grayText text-sm font-medium">Model uploaded ✓</p>
-                  <p className="text-grayText text-xs mt-1">Click to change</p>
+                  <p className="text-grayText text-xs sm:text-sm font-medium">Model uploaded ✓</p>
+                  <p className="text-grayText text-xs mt-0.5 sm:mt-1">Click to change</p>
                 </>
               ) : (
                 <>
-                  <Upload className="text-primary mb-2" size={32} />
-                  <p className="text-grayText font-medium">Upload a model image</p>
+                  <Upload className="text-primary mb-1 sm:mb-2 w-6 h-6 sm:w-8 sm:h-8" />
+                  <p className="text-grayText text-sm sm:text-base font-medium text-center">Upload a model image</p>
                 </>
               )}
             </label>
@@ -455,38 +464,39 @@ const LeftPanel = ({
         )}
       </div>
 
+      {/* Garment Selection Section */}
       <div>
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex gap-2 lg:gap-4">
+        <div className="flex justify-between items-center mb-3 sm:mb-4">
+          <div className="flex gap-1 sm:gap-2 lg:gap-4">
             <button
-              className={`text-sm px-3 lg:px-4 py-2 rounded-md transition-colors ${
+              className={`text-xs sm:text-sm px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-md transition-colors ${
                 garmentTab === "single"
                   ? "bg-primary text-white shadow-md"
                   : "text-grayText hover:text-primary bg-gray-100 hover:bg-gray-200"
               }`}
               onClick={() => handleGarmentTabChange("single")}
             >
-              Single Garment
+              Single
             </button>
             <button
-              className={`text-sm px-3 lg:px-4 py-2 rounded-md transition-colors ${
+              className={`text-xs sm:text-sm px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-md transition-colors ${
                 garmentTab === "multiple"
                   ? "bg-primary text-white shadow-md"
                   : "text-grayText hover:text-primary bg-gray-100 hover:bg-gray-200"
               }`}
               onClick={() => handleGarmentTabChange("multiple")}
             >
-              Multiple Garments
+              Multiple
             </button>
           </div>
-          <div className="flex items-center gap-2 text-grayText hover:text-primary cursor-pointer transition-colors">
-            <Info size={16} />
-            <span className="text-sm font-medium">Guideline</span>
+          <div className="flex items-center gap-1 sm:gap-2 text-grayText hover:text-primary cursor-pointer transition-colors">
+            <Info size={14} className="sm:w-4" />
+            <span className="text-xs sm:text-sm font-medium">Guideline</span>
           </div>
         </div>
 
         {garmentTab === "single" && (
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
+          <div className="bg-white rounded-xl border border-gray-200 p-3 sm:p-4">
             <input
               type="file"
               id="single-garment-upload"
@@ -496,45 +506,45 @@ const LeftPanel = ({
             />
             <label
               htmlFor="single-garment-upload"
-              className="relative bg-darkBg border-2 border-dashed border-gray-400 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary transition-all cursor-pointer h-40 mb-4"
+              className="relative bg-darkBg border-2 border-dashed border-gray-400 rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center hover:border-primary transition-all cursor-pointer h-28 sm:h-40 mb-3 sm:mb-4"
             >
               {singleGarmentImage ? (
                 <>
                   <button
                     onClick={deleteSingleGarment}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors z-10 shadow-md"
+                    className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors z-10 shadow-md"
                   >
-                    <X size={14} />
+                    <X size={12} className="sm:w-3.5" />
                   </button>
                   <img
                     src={singleGarmentImage}
                     alt="Uploaded garment"
-                    className="w-16 h-16 object-cover rounded-lg mb-2 shadow-sm"
+                    className="w-10 h-10 sm:w-16 sm:h-16 object-cover rounded-lg mb-1 sm:mb-2 shadow-sm"
                   />
-                  <p className="text-grayText text-sm font-medium">Garment uploaded ✓</p>
-                  <p className="text-grayText text-xs mt-1">
+                  <p className="text-grayText text-xs sm:text-sm font-medium">Garment uploaded ✓</p>
+                  <p className="text-grayText text-xs mt-0.5 sm:mt-1 text-center">
                     {selectedGarmentId ? getSelectedGarmentName(selectedGarmentId) : 'Click to change'}
                   </p>
                 </>
               ) : (
                 <>
-                  <Image className="text-primary mb-2" size={32} />
-                  <p className="text-grayText font-medium">Upload Single Garment</p>
+                  <Image className="text-primary mb-1 sm:mb-2 w-6 h-6 sm:w-8 sm:h-8" />
+                  <p className="text-grayText text-sm sm:text-base font-medium text-center">Upload Single Garment</p>
                 </>
               )}
             </label>
 
-            <div className="mt-4">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-sm font-medium text-gray-700">Sample Garments:</span>
+            <div className="mt-3 sm:mt-4">
+              <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                <span className="text-xs sm:text-sm font-medium text-gray-700">Sample Garments:</span>
               </div>
-              <div className="grid grid-cols-5 gap-3">
+              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
                 {sampleGarments.map((garment) => (
                   <div 
                     key={garment.id} 
                     className={`relative cursor-pointer rounded-lg overflow-hidden border-2 transition-all duration-300 group ${
                       selectedGarmentId === garment.id
-                        ? "border-primary ring-2 ring-primary/20 shadow-md" 
+                        ? "border-primary ring-1 sm:ring-2 ring-primary/20 shadow-md" 
                         : "border-gray-200 hover:border-primary hover:shadow-sm"
                     }`}
                     onClick={() => handleSampleGarmentClick(garment.id)}
@@ -543,12 +553,12 @@ const LeftPanel = ({
                       <img
                         src={garment.url}
                         alt={garment.name}
-                        className="w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-full object-contain p-1.5 sm:p-2 transition-transform duration-300 group-hover:scale-105"
                       />
             
                       {selectedGarmentId === garment.id && (
-                        <div className="absolute top-1 right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center shadow-md">
-                          <CheckCircle size={12} className="text-white" />
+                        <div className="absolute top-1 right-1 w-4 h-4 sm:w-5 sm:h-5 bg-primary rounded-full flex items-center justify-center shadow-md">
+                          <CheckCircle size={10} className="text-white sm:w-3" />
                         </div>
                       )}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
@@ -561,10 +571,10 @@ const LeftPanel = ({
         )}
 
         {garmentTab === "multiple" && (
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
-            <div className="mb-3">
-              <p className="text-sm text-gray-600 mb-2">Select top and/or bottom garments:</p>
-              <div className="flex gap-4 text-xs">
+          <div className="bg-white rounded-xl border border-gray-200 p-3 sm:p-4">
+            <div className="mb-2 sm:mb-3">
+              <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">Select top and/or bottom garments:</p>
+              <div className="flex flex-wrap gap-2 text-xs">
                 {selectedTopGarmentId && (
                   <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded">
                     Top: {getSelectedGarmentName(selectedTopGarmentId)}
@@ -578,7 +588,7 @@ const LeftPanel = ({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mb-4">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
               <div className="relative">
                 <input
                   type="file"
@@ -589,29 +599,29 @@ const LeftPanel = ({
                 />
                 <label
                   htmlFor="top-garment-upload"
-                  className="relative bg-darkBg border-2 border-dashed border-gray-400 rounded-xl p-4 flex flex-col items-center justify-center hover:border-primary transition-all cursor-pointer h-32"
+                  className="relative bg-darkBg border-2 border-dashed border-gray-400 rounded-xl p-3 sm:p-4 flex flex-col items-center justify-center hover:border-primary transition-all cursor-pointer h-24 sm:h-32"
                 >
                   {topGarmentImage ? (
                     <>
                       <button
                         onClick={deleteTopGarment}
-                        className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors z-10 shadow-md"
+                        className="absolute -top-1.5 -right-1.5 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors z-10 shadow-md"
                       >
-                        <X size={12} />
+                        <X size={10} className="sm:w-3" />
                       </button>
                       <img
                         src={topGarmentImage}
                         alt="Uploaded top"
-                        className="w-12 h-12 object-cover rounded-lg mb-1 shadow-sm"
+                        className="w-8 h-8 sm:w-12 sm:h-12 object-cover rounded-lg mb-1 shadow-sm"
                       />
-                      <p className="text-grayText text-xs font-medium">
+                      <p className="text-grayText text-xs font-medium text-center">
                         {selectedTopGarmentId ? getSelectedGarmentName(selectedTopGarmentId) : 'Top ✓'}
                       </p>
                     </>
                   ) : (
                     <>
-                      <Upload className="text-primary mb-1" size={24} />
-                      <p className="text-grayText text-sm text-center font-medium">Upload Top</p>
+                      <Upload className="text-primary mb-1 w-4 h-4 sm:w-6 sm:h-6" />
+                      <p className="text-grayText text-xs sm:text-sm text-center font-medium">Upload Top</p>
                     </>
                   )}
                 </label>
@@ -627,47 +637,47 @@ const LeftPanel = ({
                 />
                 <label
                   htmlFor="bottom-garment-upload"
-                  className="relative bg-darkBg border-2 border-dashed border-gray-400 rounded-xl p-4 flex flex-col items-center justify-center hover:border-primary transition-all cursor-pointer h-32"
+                  className="relative bg-darkBg border-2 border-dashed border-gray-400 rounded-xl p-3 sm:p-4 flex flex-col items-center justify-center hover:border-primary transition-all cursor-pointer h-24 sm:h-32"
                 >
                   {bottomGarmentImage ? (
                     <>
                       <button
                         onClick={deleteBottomGarment}
-                        className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors z-10 shadow-md"
+                        className="absolute -top-1.5 -right-1.5 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors z-10 shadow-md"
                       >
-                        <X size={12} />
+                        <X size={10} className="sm:w-3" />
                       </button>
                       <img
                         src={bottomGarmentImage}
                         alt="Uploaded bottom"
-                        className="w-12 h-12 object-cover rounded-lg mb-1 shadow-sm"
+                        className="w-8 h-8 sm:w-12 sm:h-12 object-cover rounded-lg mb-1 shadow-sm"
                       />
-                      <p className="text-grayText text-xs font-medium">
+                      <p className="text-grayText text-xs font-medium text-center">
                         {selectedBottomGarmentId ? getSelectedGarmentName(selectedBottomGarmentId) : 'Bottom ✓'}
                       </p>
                     </>
                   ) : (
                     <>
-                      <Upload className="text-primary mb-1" size={24} />
-                      <p className="text-grayText text-sm text-center font-medium">Upload Bottom</p>
+                      <Upload className="text-primary mb-1 w-4 h-4 sm:w-6 sm:h-6" />
+                      <p className="text-grayText text-xs sm:text-sm text-center font-medium">Upload Bottom</p>
                     </>
                   )}
                 </label>
               </div>
             </div>
 
-            <div className="mt-4">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-sm font-medium text-gray-700">Sample Garments:</span>
+            <div className="mt-3 sm:mt-4">
+              <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                <span className="text-xs sm:text-sm font-medium text-gray-700">Sample Garments:</span>
               </div>
-              <div className="grid grid-cols-5 gap-3">
+              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
                 {sampleGarments.map((garment) => (
                   <div 
                     key={garment.id} 
                     className={`relative cursor-pointer rounded-lg overflow-hidden border-2 transition-all duration-300 group ${
                       ((garment.type === 'top' || garment.type === 'dress') && selectedTopGarmentId === garment.id) ||
                       (garment.type === 'bottom' && selectedBottomGarmentId === garment.id)
-                        ? "border-primary ring-2 ring-primary/20 shadow-md" 
+                        ? "border-primary ring-1 sm:ring-2 ring-primary/20 shadow-md" 
                         : "border-gray-200 hover:border-primary hover:shadow-sm"
                     }`}
                     onClick={() => handleSampleGarmentClick(garment.id)}
@@ -676,12 +686,12 @@ const LeftPanel = ({
                       <img
                         src={garment.url}
                         alt={garment.name}
-                        className="w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-full object-contain p-1.5 sm:p-2 transition-transform duration-300 group-hover:scale-105"
                       />
                       {((garment.type === 'top' || garment.type === 'dress') && selectedTopGarmentId === garment.id) ||
                        (garment.type === 'bottom' && selectedBottomGarmentId === garment.id) ? (
-                        <div className="absolute top-1 right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center shadow-md">
-                          <CheckCircle size={12} className="text-white" />
+                        <div className="absolute top-1 right-1 w-4 h-4 sm:w-5 sm:h-5 bg-primary rounded-full flex items-center justify-center shadow-md">
+                          <CheckCircle size={10} className="text-white sm:w-3" />
                         </div>
                       ) : null}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
@@ -693,11 +703,13 @@ const LeftPanel = ({
           </div>
         )}
       </div>
-      <div className="flex justify-end mt-6">
+
+      {/* Generate Button */}
+      <div className="flex justify-center sm:justify-end mt-4 sm:mt-6">
         <button
           onClick={handleGenerateClick}
           disabled={!canGenerate() || loading}
-          className={`px-8 py-3 font-semibold rounded-xl transition-all duration-300 ${
+          className={`w-full sm:w-auto px-6 sm:px-8 py-3 font-semibold rounded-xl transition-all duration-300 ${
             !canGenerate() || loading
               ? 'bg-gray-400 text-gray-200 cursor-not-allowed shadow-sm'
               : 'bg-primary hover:bg-accent text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'

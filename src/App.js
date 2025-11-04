@@ -287,18 +287,18 @@ function App() {
 
       <div className="flex-1 flex flex-col">
         <header className="bg-whiteBg border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-14 sm:h-16">
               <div className="flex items-center">
-                <h1 className="text-2xl font-bold text-darkText">AI Try-On Generator</h1>
+                <h1 className="text-xl sm:text-2xl font-bold text-darkText">AI Try-On Generator</h1>
               </div>
               
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 text-grayText">
-                  <User size={20} />
-                  <span className="font-medium">{currentUser.username}</span>
+              <div className="flex items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-1 sm:gap-2 text-grayText">
+                  <User size={16} className="sm:w-5" />
+                  <span className="font-medium text-sm sm:text-base">{currentUser.username}</span>
                   {currentUser.token && (
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                    <span className="hidden sm:inline text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
                       Authenticated
                     </span>
                   )}
@@ -306,10 +306,10 @@ function App() {
                 
                 <button
                   onClick={handleSignOut}
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-grayText hover:text-darkText hover:bg-gray-50 rounded-lg transition-colors"
+                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-grayText hover:text-darkText hover:bg-gray-50 rounded-lg transition-colors"
                 >
-                  <LogOut size={16} />
-                  Sign Out
+                  <LogOut size={14} className="sm:w-4" />
+                  <span className="hidden sm:inline">Sign Out</span>
                 </button>
               </div>
             </div>
@@ -319,7 +319,7 @@ function App() {
         <div className="flex-1 overflow-auto">
           <div className="max-w-7xl mx-auto">
             <div className="block lg:hidden">
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <LeftPanel
                   selectedOutputs={selectedOutputs}
                   setSelectedOutputs={setSelectedOutputs}
@@ -351,7 +351,7 @@ function App() {
                 />
               </div>
 
-              <div className="p-4 border-t border-gray-200">
+              <div className="p-3 sm:p-4 border-t border-gray-200">
                 <OutputGrid 
                   results={results} 
                   loading={loading}

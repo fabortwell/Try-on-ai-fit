@@ -194,7 +194,7 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <div className="relative mb-6">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
           <Zap className="absolute inset-0 m-auto text-blue-500" size={20} />
@@ -224,21 +224,21 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4">
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-4">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6 sm:mb-8 gap-3 sm:gap-4">
         <div className="text-center lg:text-left">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">AI Outfit</h1>
-          <div className="flex items-center justify-center lg:justify-start gap-3">
-            <div className="flex items-center gap-2 text-sm text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
-              <Zap size={16} />
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">AI Outfit</h1>
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-blue-600 bg-blue-50 px-2 sm:px-3 py-1 rounded-full">
+              <Zap size={14} className="sm:w-4" />
               <span className="font-medium">Powered by Vella 1.5 AI</span>
             </div>
             {storedResults.length > 0 && (
               <button
                 onClick={clearAllResults}
-                className="text-sm text-gray-500 hover:text-gray-700 px-3 py-1 rounded-full border border-gray-200 hover:border-gray-300 transition-colors flex items-center gap-2"
+                className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 px-2 sm:px-3 py-1 rounded-full border border-gray-200 hover:border-gray-300 transition-colors flex items-center gap-1 sm:gap-2"
               >
-                <Trash2 size={14} />
+                <Trash2 size={12} className="sm:w-3.5" />
                 Clear All ({storedResults.length})
               </button>
             )}
@@ -246,7 +246,7 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         {displayResults.map((resultSet, resultIndex) => (
           <div 
             key={resultSet.id || resultIndex} 
@@ -266,18 +266,18 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
                 loading="lazy"
               />
               
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-between p-4">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-between p-3 sm:p-4">
 
-                <div className="flex justify-end gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="flex justify-end gap-1 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       handleDownload(resultSet.modelFront, `model-front.jpg`);
                     }}
-                    className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-gray-200 hover:scale-110"
+                    className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 p-1.5 sm:p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-gray-200 hover:scale-110"
                     title="Download image"
                   >
-                    <Download size={18} />
+                    <Download size={14} className="sm:w-4" />
                   </button>
 
                   <button
@@ -285,7 +285,7 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
                       e.stopPropagation();
                       handleFavorite(resultSet.modelFront);
                     }}
-                    className={`bg-white/90 backdrop-blur-sm hover:bg-white p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-gray-200 hover:scale-110 ${
+                    className={`bg-white/90 backdrop-blur-sm hover:bg-white p-1.5 sm:p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-gray-200 hover:scale-110 ${
                       interactionStates[resultSet.modelFront]?.favorite 
                         ? 'text-red-500 border-red-200' 
                         : 'text-gray-700'
@@ -293,7 +293,8 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
                     title="Favorite"
                   >
                     <Heart 
-                      size={18} 
+                      size={14} 
+                      className="sm:w-4"
                       fill={interactionStates[resultSet.modelFront]?.favorite ? "currentColor" : "none"}
                     />
                   </button>
@@ -301,20 +302,20 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
 
                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 sm:gap-2">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleReaction(resultSet.modelFront, 'like');
                         }}
-                        className={`bg-white/90 backdrop-blur-sm hover:bg-white p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-gray-200 hover:scale-110 ${
+                        className={`bg-white/90 backdrop-blur-sm hover:bg-white p-1.5 sm:p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-gray-200 hover:scale-110 ${
                           interactionStates[resultSet.modelFront]?.reaction === 'like' 
                             ? 'text-green-500 border-green-200' 
                             : 'text-gray-700'
                         }`}
                         title="Like"
                       >
-                        <ThumbsUp size={16} />
+                        <ThumbsUp size={12} className="sm:w-4" />
                       </button>
 
                       <button
@@ -322,10 +323,10 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
                           e.stopPropagation();
                           handleShare(resultSet.modelFront);
                         }}
-                        className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-gray-200 hover:scale-110"
+                        className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 p-1.5 sm:p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-gray-200 hover:scale-110"
                         title="Share"
                       >
-                        <Share size={16} />
+                        <Share size={12} className="sm:w-4" />
                       </button>
                     </div>
                     
@@ -334,10 +335,10 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
                         e.stopPropagation();
                         deleteResultSet(resultSet.id);
                       }}
-                      className="bg-red-500/90 backdrop-blur-sm hover:bg-red-600 text-white p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-red-200 hover:scale-110"
+                      className="bg-red-500/90 backdrop-blur-sm hover:bg-red-600 text-white p-1.5 sm:p-2 rounded-full transition-all duration-200 hover:shadow-lg border border-red-200 hover:scale-110"
                       title="Delete"
                     >
-                      <Trash2 size={16} />
+                      <Trash2 size={12} className="sm:w-4" />
                     </button>
                   </div>
                 </div>
@@ -348,24 +349,23 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
       </div>
 
       {modalData && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] overflow-hidden flex flex-col">
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-2 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-full sm:max-w-4xl h-full sm:h-auto sm:max-h-[95vh] overflow-hidden flex flex-col">
 
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white">
-              <div className="flex items-center gap-4">
-                <h2 className="text-2xl font-bold text-gray-900">AI Outfit</h2>
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 bg-white">
+              <div className="flex items-center gap-2 sm:gap-4">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">AI Outfit</h2>
               </div>
               <button
                 onClick={closeImageModal}
-                className="p-3 hover:bg-gray-100 rounded-full transition-colors duration-200"
+                className="p-2 sm:p-3 hover:bg-gray-100 rounded-full transition-colors duration-200"
               >
-                <X size={24} className="text-gray-500" />
+                <X size={20} className="sm:w-6 text-gray-500" />
               </button>
             </div>
 
-    
-            <div className="flex-1 flex flex-col lg:flex-row min-h-0">
-              <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-gray-50 to-gray-100">
+            <div className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-auto">
+              <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-[50vh] sm:min-h-0">
                 <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src={getValidImageUrl(modalData.imageUrl)}
@@ -380,23 +380,23 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
                 </div>
               </div>
 
-              <div className="w-full lg:w-80 border-l border-gray-200 bg-white flex flex-col">
-                <div className="p-6 border-b border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Reference Images</h3>
-                  <div className="grid grid-cols-2 gap-4">
+              <div className="w-full lg:w-80 border-t lg:border-l border-gray-200 bg-white flex flex-col">
+                <div className="p-4 sm:p-6 border-b border-gray-200">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Reference Images</h3>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     <div className="text-center">
-                      <div className="aspect-square bg-white rounded-lg overflow-hidden mb-2 border border-gray-200 shadow-sm">
+                      <div className="aspect-square bg-white rounded-lg overflow-hidden mb-1 sm:mb-2 border border-gray-200 shadow-sm">
                         <img
                           src={getValidImageUrl(modalData.resultSet?.enhancedProduct)}
                           alt="Garment Reference"
-                          className="w-full h-full object-contain p-3"
+                          className="w-full h-full object-contain p-2 sm:p-3"
                         />
                       </div>
                       <p className="text-xs font-semibold text-gray-800 bg-gray-100 py-1 px-2 rounded-full">Garment</p>
                     </div>
                     
                     <div className="text-center">
-                      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200 shadow-sm">
+                      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-1 sm:mb-2 border border-gray-200 shadow-sm">
                         <img
                           src={getValidImageUrl(modalData.resultSet?.modelFront)}
                           alt="Model Reference"
@@ -408,38 +408,38 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
                   </div>
                 </div>
 
-                <div className="p-6 space-y-4">
+                <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
                   <button 
                     onClick={() => handleDownload(modalData.imageUrl, `ai-outfit.jpg`)}
-                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-xl transition-all duration-200 font-semibold shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all duration-200 font-semibold shadow-lg hover:shadow-xl flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base"
                   >
-                    <Download size={20} />
+                    <Download size={16} className="sm:w-5" />
                     Download Image
                   </button>
                   
-                  <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-3 rounded-xl transition-all duration-200 font-semibold shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
-                    <Play size={20} />
+                  <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all duration-200 font-semibold shadow-lg hover:shadow-xl flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
+                    <Play size={16} className="sm:w-5" />
                     Generate Video
                   </button>
                 </div>
 
-                <div className="p-6 border-t border-gray-200 bg-gray-50">
-                  <div className="flex justify-center gap-4">
+                <div className="p-4 sm:p-6 border-t border-gray-200 bg-gray-50">
+                  <div className="flex justify-center gap-3 sm:gap-4">
                     <button
                       onClick={() => handleReaction(modalData.imageUrl, 'like')}
-                      className={`p-3 rounded-full transition-all duration-200 ${
+                      className={`p-2 sm:p-3 rounded-full transition-all duration-200 ${
                         interactionStates[modalData.imageUrl]?.reaction === 'like' 
                           ? 'bg-green-100 text-green-600 border border-green-200' 
                           : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                       }`}
                       title="Like"
                     >
-                      <ThumbsUp size={20} />
+                      <ThumbsUp size={16} className="sm:w-5" />
                     </button>
 
                     <button
                       onClick={() => handleFavorite(modalData.imageUrl)}
-                      className={`p-3 rounded-full transition-all duration-200 ${
+                      className={`p-2 sm:p-3 rounded-full transition-all duration-200 ${
                         interactionStates[modalData.imageUrl]?.favorite 
                           ? 'bg-red-100 text-red-600 border border-red-200' 
                           : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
@@ -447,22 +447,23 @@ const OutputGrid = ({ results, loading, onReset, currentUser }) => {
                       title="Favorite"
                     >
                       <Heart 
-                        size={20} 
+                        size={16} 
+                        className="sm:w-5"
                         fill={interactionStates[modalData.imageUrl]?.favorite ? "currentColor" : "none"}
                       />
                     </button>
 
                     <button
                       onClick={() => handleShare(modalData.imageUrl)}
-                      className="p-3 rounded-full bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition-all duration-200"
+                      className="p-2 sm:p-3 rounded-full bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition-all duration-200"
                       title="Share"
                     >
-                      <Share size={20} />
+                      <Share size={16} className="sm:w-5" />
                     </button>
                   </div>
                 </div>
 
-                <div className="p-4 border-t border-gray-200 bg-gray-50">
+                <div className="p-3 sm:p-4 border-t border-gray-200 bg-gray-50">
                   <div className="text-center text-xs text-gray-600">
                     <p>The generated contents do not represent the views, products or attributes of AI Try-on.</p>
                     <p className="mt-1">Please use them responsibly and kindly.</p>
