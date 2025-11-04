@@ -287,7 +287,7 @@ function App() {
 
       <div className="flex-1 flex flex-col">
         <header className="bg-whiteBg border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
             <div className="flex justify-between items-center h-14 sm:h-16">
               <div className="flex items-center">
                 <h1 className="text-xl sm:text-2xl font-bold text-darkText">AI Try-On Generator</h1>
