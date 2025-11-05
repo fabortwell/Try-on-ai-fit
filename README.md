@@ -1,205 +1,235 @@
 
-````markdown
-# TryFit AI 👗
+# 👗 TryFit AI
 
-A cutting-edge virtual try-on platform that uses artificial intelligence to revolutionize how you experience fashion online. Upload models and clothing items to generate realistic outfit simulations instantly.
+A cutting-edge virtual try-on platform that uses **Artificial Intelligence** to revolutionize how you experience fashion online. Upload models and clothing items to generate realistic outfit simulations instantly.
 
-![TryFit AI Interface](https://github.com/fabortwell/Try-on-ai-fit/blob/main/src/images/home.png?raw=true)
+![TryFit AI Interface](https://github.com/fabortwell/try-on-ai-fit/blob/main/src/images/home.png?raw=true)
 *TryFit AI Interface - Upload models and garments to generate outfits*
 
-## ✨ TryFit AI Features
+---
+
+## ✨ Features
 
 ### 🤖 AI-Powered Virtual Fitting
-- **Smart Model Selection**: Choose from 8 default models or upload custom model images
+- **Smart Model Selection**: Choose from 8 default models or upload your own
 - **Flexible Garment Upload**: Upload single garments or mix-and-match tops and bottoms
-- **Instant Generation**: Generate multiple outfit variations using advanced AI technology
-- **Photorealistic Results**: High-quality virtual try-on outputs that look real
+- **Instant Generation**: Create multiple outfit variations using advanced AI
+- **Photorealistic Results**: Realistic virtual try-on outputs with high visual fidelity
 
 ### 🎯 Seamless User Experience
-- **Mobile-First Design**: Optimized for all devices with touch-friendly interfaces
-- **Intuitive Workflow**: Simple three-step process: Select → Upload → Generate
+- **Mobile-First Design**: Fully responsive and optimized for all devices
+- **Intuitive Workflow**: Simple three-step process — *Select → Upload → Generate*
 - **Visual Previews**: Real-time previews of selected models and garments
 - **Interactive Gallery**: Like, favorite, and share your generated outfits
 
 ### 🔐 Personalized Experience
-- **Secure Accounts**: User registration and login with JWT authentication
+- **Secure Accounts**: JWT-based authentication for registration and login
 - **Outfit History**: Save and manage all your generated try-on sessions
-- **Cross-Device Sync**: Access your outfits from any device
+- **Cross-Device Sync**: Access your outfits from anywhere
 
-## 🚀 Get Started with TryFit AI
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js (v14 or higher)
 - npm or yarn
-- Backend API server running
+- Backend API server running (TryFit AI backend)
 
 ### Installation
 
-1. **Clone TryFit AI**
+1. **Clone the Repository**
    ```bash
    git clone https://github.com/your-username/tryfit-ai.git
    cd tryfit-ai
-````
 
-2. **Install dependencies**
+
+2. **Install Dependencies**
 
    ```bash
    npm install
    ```
 
-3. **Configure your environment**
+3. **Configure Environment Variables**
+   Create a `.env` file in the root directory:
 
    ```bash
-   # Update API_BASE_URL in App.js to point to your TryFit AI backend
-   const API_BASE_URL = 'https://your-tryfit-backend.com';
+   REACT_APP_API_BASE_URL=https://your-tryfit-backend.com
+   REACT_APP_JWT_SECRET=your_jwt_secret_key
    ```
 
-4. **Start the development server**
+4. **Start the Development Server**
 
    ```bash
    npm start
    ```
 
-5. **Launch TryFit AI**
+5. **Open in Browser**
 
    ```
    http://localhost:3000
    ```
 
-## 🛠️ TryFit AI Tech Stack
+---
 
-### Frontend Architecture
+## 🛠️ Tech Stack
 
-* **React 18** - Modern, component-based UI framework
-* **Tailwind CSS** - Utility-first styling for rapid development
-* **Lucide React** - Beautiful, consistent icon system
-* **Context API** - Efficient state management
+### Frontend
+
+* **React 18** – Modern component-based UI framework
+* **Tailwind CSS** – Utility-first styling
+* **Lucide React** – Elegant icon system
+* **Context API** – Efficient state management
 
 ### AI Integration
 
-* **Vella 1.5 AI** - Advanced virtual try-on generation
-* **RESTful API** - Seamless backend communication
-* **Real-time Processing** - Live generation status updates
-* **Image Optimization** - Smart compression and handling
+* **Vella 1.5 AI** – Advanced virtual try-on generation
+* **RESTful API** – Smooth backend communication
+* **Image Optimization** – Smart compression and processing
+* **Real-time Processing** – Live generation status updates
 
-## 📱 How TryFit AI Works
+---
+
+## 📱 How It Works
 
 ### 1. Create Your Account
 
-* Sign up for a free TryFit AI account
-* Access personalized features and outfit history
+Sign up for a free TryFit AI account to unlock personalized features and outfit history.
 
 ### 2. Choose Your Model
 
-* **Default Models**: Select from 8 diverse pre-loaded models
-* **Custom Models**: Upload your own model photos (front-facing recommended)
+* **Default Models**: 8 diverse pre-loaded models
+* **Custom Models**: Upload your own photo (front-facing recommended)
 
 ### 3. Select Garments
 
-* **Single Items**: Upload dresses, jumpsuits, or full outfits
-* **Mix & Match**: Combine separate tops and bottoms
-* **Sample Collection**: Test with our pre-loaded garment samples
+* Upload single garments or mix & match tops and bottoms
+* Use preloaded sample collections for quick testing
 
 ### 4. Generate & Explore
 
-* Click "Generate" to create AI-powered try-ons
-* Browse results in an elegant grid layout
-* Download, share, or save your favorite outfits
+Click **Generate** to create AI-powered try-ons.
+Browse your results in a grid layout — download, share, or favorite your outfits.
 
-![TryFit AI Results](https://github.com/fabortwell/Try-on-ai-fit/blob/main/src/images/results_try_on.png?raw=true)
+![TryFit AI Results](https://github.com/fabortwell/try-on-ai-fit/blob/main/src/images/results_try_on.png?raw=true)
 *Example of TryFit AI generated virtual try-on results*
 
-## 🎨 TryFit AI Components
+---
 
-```
+## 🧩 Project Structure
+
+
 tryfit-ai/
 ├── src/
 │   ├── components/
-│   │   ├── LeftPanel.js          # Model & garment selection interface
-│   │   ├── OutputGrid.js         # Results display with interactive features
-│   │   ├── AuthPage.js           # Secure user authentication
-│   │   └── Sidebar.js            # Desktop navigation
-│   ├── App.js                    # Main application orchestrator
-│   └── images/                   # Sample models and garments
-```
+│   │   ├── LeftPanel.js      # Handles model & garment selection
+│   │   ├── OutputGrid.js     # Displays generated results
+│   │   ├── AuthPage.js       # Handles authentication (login/register)
+│   │   └── Sidebar.js        # Desktop navigation sidebar
+│   ├── App.js                # Main application entry point
+│   ├── images/               # Sample models & garments
+│   └── styles/               # Tailwind or custom CSS
+└── public/
+    ├── index.html
+    └── favicon.ico
 
-### Core Features
 
-* **Intelligent LeftPanel**: Handles all model and garment configurations with smart validation
-* **Dynamic OutputGrid**: Beautiful results display with download, share, and favorite options
-* **Secure Auth System**: JWT-based authentication with persistent sessions
-* **Responsive Design**: Flawless experience across all device sizes
+## 🔧 API Integration
 
-## 🔧 TryFit AI API Integration
+TryFit AI communicates with the backend for:
 
-TryFit AI seamlessly connects with our backend for:
+* **Authentication** – JWT-based user management
+* **AI Generation** – Virtual try-on processing
+* **Image Handling** – Uploads and optimization
+* **Session Storage** – User history and favorites
 
-* **User Management**: Secure registration, login, and profile management
-* **AI Processing**: Advanced virtual try-on generation
-* **Image Handling**: Optimized upload and processing pipeline
-* **Real-time Updates**: Live generation progress tracking
+### Example Request
 
-### API Integration Example
-
-```javascript
-// TryFit AI generation request
-const response = await fetch(`${API_BASE_URL}/api/generate`, {
+javascript
+// AI Outfit Generation
+const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/generate`, {
   method: 'POST',
-  body: formData,
   headers: {
-    'Authorization': `Bearer ${userToken}`
-  }
+    Authorization: `Bearer ${userToken}`,
+  },
+  body: formData,
 });
-```
 
-## 📱 Optimized for Every Device
+const result = await response.json();
 
-TryFit AI delivers exceptional experiences across all platforms:
 
-* **Desktop**: Split-panel layout with sidebar navigation
-* **Tablet**: Adaptive interfaces with touch-optimized controls
-* **Mobile**: Stacked mobile-first design with perfect touch targets
 
-## 🚀 Deploy TryFit AI
+## 💻 Responsive Design
+
+| Device     | Experience                                      |
+| ---------- | ----------------------------------------------- |
+| 💻 Desktop | Split-panel layout with sidebar navigation      |
+| 📱 Mobile  | Stacked interface with touch-optimized controls |
+| 📊 Tablet  | Adaptive hybrid layout                          |
+
+---
+
+## 🚀 Deployment
 
 ### Build for Production
 
-```bash
+bash
 npm run build
-```
+
 
 ### Deployment Options
 
-* **Vercel**: One-click deployment with optimal performance
-* **Netlify**: Continuous deployment from GitHub
-* **Traditional Hosting**: Serve the `build` folder on any web server
+* **Vercel** – One-click deployment with CI/CD
+* **Netlify** – Continuous deployment from GitHub
+* **Traditional Hosting** – Serve from the `/build` directory
 
-## 🤝 Contribute to TryFit AI
+---
 
-We're excited to welcome contributors to TryFit AI! Whether you're fixing bugs or adding new features, your help is appreciated.
+## 🤝 Contributing
 
-### Development Workflow
+We welcome all contributions!
 
-1. Fork the TryFit AI repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork the repository
+2. Create your feature branch
 
-## 📄 License
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. Commit your changes
 
-TryFit AI is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
+4. Push the branch
+
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. Open a Pull Request 🎉
+
+---
+
+## 📜 License
+
+TryFit AI is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## 🙏 Acknowledgments
 
-* **Vella 1.5 AI** for powering our virtual try-on technology
-* **Lucide** for the beautiful, consistent icon system
-* **Tailwind CSS** for enabling rapid, responsive development
-* **React Community** for the incredible ecosystem and support
-
-## 💬 TryFit AI Support
-
-Having trouble with TryFit AI? Check our issues page or contact our development team.
+* **Vella 1.5 AI** – Powering our try-on technology
+* **Lucide Icons** – For the clean and elegant icons
+* **Tailwind CSS** – For enabling rapid, responsive design
+* **React Community** – For the amazing open-source ecosystem
 
 ---
-```
+
+## 💬 Support
+
+Having issues or feature requests?
+📩 [Open an Issue](https://github.com/your-username/tryfit-ai/issues) or reach out to our dev team.
+
+---
+
+Made with ❤️ by the TryFit AI Team.
+
